@@ -4,6 +4,7 @@ import com.learnspring.identity_service.dto.request.UserCreationRequest;
 import com.learnspring.identity_service.dto.request.UserUpdateRequest;
 import com.learnspring.identity_service.entity.User;
 import com.learnspring.identity_service.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UserController {
 
     //Tạo user. Đây được tính là 1 API, đơn giản chưa =))))
     @PostMapping
-    User createUser(@RequestBody UserCreationRequest request) { //1 endpoint sẽ nhận data từ users, thì để map data từ request vào object thì ta dùng @RequestBody map data của body vào object UserCreationRequest
+    User createUser(@RequestBody @Valid UserCreationRequest request) { //1 endpoint sẽ nhận data từ users, thì để map data từ request vào object thì ta dùng @RequestBody map data của body vào object UserCreationRequest
         return userService.createUser(request);
     }
 
