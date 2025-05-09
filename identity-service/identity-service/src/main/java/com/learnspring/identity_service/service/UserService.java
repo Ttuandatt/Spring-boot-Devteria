@@ -3,6 +3,8 @@ package com.learnspring.identity_service.service;
 import com.learnspring.identity_service.dto.request.UserCreationRequest;
 import com.learnspring.identity_service.dto.request.UserUpdateRequest;
 import com.learnspring.identity_service.entity.User;
+import com.learnspring.identity_service.exception.AppException;
+import com.learnspring.identity_service.exception.ErrorCode;
 import com.learnspring.identity_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ public class UserService {
 
         //Alert when we create new user with existed username
         if(userRepository.existsByUsername(request.getUsername()))
-            throw new RuntimeException("Username existed!");
+            throw new AppException(ErrorCode.USER_EXISTED);
 
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());

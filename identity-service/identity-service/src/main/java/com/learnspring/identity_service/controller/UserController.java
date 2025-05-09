@@ -1,5 +1,6 @@
 package com.learnspring.identity_service.controller;
 
+import com.learnspring.identity_service.dto.request.ApiResponse;
 import com.learnspring.identity_service.dto.request.UserCreationRequest;
 import com.learnspring.identity_service.dto.request.UserUpdateRequest;
 import com.learnspring.identity_service.entity.User;
@@ -21,8 +22,12 @@ public class UserController {
 
     //Tạo user. Đây được tính là 1 API, đơn giản chưa =))))
     @PostMapping
-    User createUser(@RequestBody @Valid UserCreationRequest request) { //1 endpoint sẽ nhận data từ users, thì để map data từ request vào object thì ta dùng @RequestBody map data của body vào object UserCreationRequest
-        return userService.createUser(request);
+    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) { //1 endpoint sẽ nhận data từ users, thì để map data từ request vào object thì ta dùng @RequestBody map data của body vào object UserCreationRequest
+        ApiResponse<User> apiResponse = new ApiResponse<>();
+
+        apiResponse.setResult(userService.createUser(request));
+
+        return apiResponse;
     }
 
     //Lấy danh sách user
