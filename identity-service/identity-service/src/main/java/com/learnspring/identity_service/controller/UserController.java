@@ -3,9 +3,13 @@ package com.learnspring.identity_service.controller;
 import com.learnspring.identity_service.dto.request.ApiResponse;
 import com.learnspring.identity_service.dto.request.UserCreationRequest;
 import com.learnspring.identity_service.dto.request.UserUpdateRequest;
+import com.learnspring.identity_service.dto.response.UserResponse;
 import com.learnspring.identity_service.entity.User;
 import com.learnspring.identity_service.service.UserService;
 import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    private UserService userService;
+    UserService userService;
 
 
 
@@ -38,13 +43,13 @@ public class UserController {
 
     //Lấy user by Id
     @GetMapping("/{userId}")
-    User getUserById(@PathVariable("userId") String userId){
+    UserResponse getUserById(@PathVariable("userId") String userId){
         return userService.getUserById(userId);
     }
 
     //Cập nhật thông tin user
     @PutMapping("/{userId}")
-    User updateUser(@PathVariable("userId") String userId, @RequestBody UserUpdateRequest updateRequest){
+    UserResponse updateUser(@PathVariable("userId") String userId, @RequestBody UserUpdateRequest updateRequest){
         return userService.updateUser(userId, updateRequest);
     }
 
