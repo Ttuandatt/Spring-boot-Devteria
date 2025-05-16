@@ -1,5 +1,7 @@
 Tổng quan cách hoạt động của identity-service:
+=
 🧱 1. Kiến trúc tổng thể
+=
 Project của bạn tuân theo kiến trúc 3 tầng (Three-layered architecture):
 
 Controller Layer  →  Service Layer  →  Repository Layer (Database)
@@ -7,8 +9,10 @@ Controller Layer  →  Service Layer  →  Repository Layer (Database)
      DTO / Request      Entity / Mapper     JPA / Query
         ↑
   Exception Handling
+
   
 📦 2. Luồng hoạt động chi tiết
+=
 🧩 Bước 1: Client gửi yêu cầu tới API
 =
 Ví dụ: Gửi POST /users với nội dung JSON tạo user.
