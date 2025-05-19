@@ -8,6 +8,7 @@ public enum ErrorCode {
     INVALID_PASSWORD(1003, "Password must be at least 3 characters!"),
     UPDATE_FAILED(1004, "Update failed!"),
     RESOURCE_NOT_FOUND(1005, "Resource not found!"),
+    USER_NOT_FOUND(1006, "User not found!"),
     ;
     private int code;
     private String message;
